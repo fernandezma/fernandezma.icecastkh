@@ -1,0 +1,12 @@
+---
+- apt: update_cache=yes cache_valid_time=3600
+
+- name: install dependencies
+  action: apt pkg={{ item }} state=present
+  with_items:
+    - build-essential
+    - libxml2-dev
+    - libxslt1-dev
+    - libvorbis-dev
+    - libogg-dev
+    - libtheora-dev

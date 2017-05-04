@@ -1,0 +1,9 @@
+---
+- name: Compile Icecast KH
+  command: "{{ item }}"
+  args:
+    chdir: "{{ icecastkh_tmpdir }}"
+  with_items:
+    - ./configure
+    - make
+    - make install

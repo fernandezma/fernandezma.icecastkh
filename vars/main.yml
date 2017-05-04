@@ -1,2 +1,9 @@
 ---
 # vars file for fernandezma.icecsatkh
+
+- name: Create temporary directory
+  local_action: command mktemp -d
+  register: icecastkh_tmpdir
+
+
+icecastkh_version: "icecast-2.4.0-kh4"

@@ -1,2 +1,8 @@
 ---
-# tasks file for fernandezma.icecsatkh
+- include: dependencies.yml
+
+- include: download.yml
+
+- include: compile.yml 
+
+- include: adduser.yml

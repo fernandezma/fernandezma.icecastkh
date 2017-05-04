@@ -1,0 +1,13 @@
+---- 
+- name: add group icecast
+  group:
+    name: icecast
+    state: present
+
+- name: test basic user account creation
+  user: 
+    name: icecast 
+    comment: Icecast 
+    group: icecast 
+    shell: /sbin/nologin
+    createhome: no
