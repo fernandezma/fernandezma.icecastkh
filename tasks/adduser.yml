@@ -1,4 +1,4 @@
----- 
+--- 
 - name: add group icecast
   group:
     name: icecast

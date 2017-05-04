@@ -1,0 +1,5 @@
+---
+- name: create temporary build directory
+  tempfile:
+    state: directory
+    suffix: build
