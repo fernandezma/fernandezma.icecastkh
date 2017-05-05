@@ -3,4 +3,5 @@
   tempfile:
     state: directory
     suffix: build
-    register: icecastkh_tmpfile
+
+  register: icecastkh_tmpfile
