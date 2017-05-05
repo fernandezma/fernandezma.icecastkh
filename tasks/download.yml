@@ -1,5 +1,5 @@
 ---
 - git:
     repo: https://github.com/karlheyes/icecast-kh.git
-    dest: "{{ build }}"
+    dest: "{{ icecastkh_tmpfile }}"
     version: "{{ icecastkh_version }}"
