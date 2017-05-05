@@ -4,6 +4,7 @@
   args:
     chdir: "{{ icecastkh_tmpfile }}"
   with_items:
+    - cd {{ icecastkh_tmpfile.path }} 
     - ./configure
     - make
     - make install
