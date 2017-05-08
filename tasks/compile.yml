@@ -2,9 +2,8 @@
 - name: Compile Icecast KH
   command: "{{ item }}"
   args:
-    chdir: "{{ icecastkh_tmpfile }}"
+    chdir: "{{ icecastkh_tmpfile.path }}"
   with_items:
-    - cd {{ icecastkh_tmpfile.path }} 
     - ./configure
     - make
     - make install
