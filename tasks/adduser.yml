@@ -1,13 +1,13 @@
 --- 
 - name: add group icecast
   group:
-    name: icecast
+    name: "{{ icecastkh_xml_group }}"
     state: present
 
 - name: test basic user account creation
   user: 
-    name: icecast 
-    comment: Icecast 
-    group: icecast 
+    name: "{{ icecastkh_xml_owner }}"
+    comment: Icecast User 
+    group: "{{ icecastkh_xml_group }}"
     shell: /sbin/nologin
     createhome: no

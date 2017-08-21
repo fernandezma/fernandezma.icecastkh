@@ -3,5 +3,4 @@
   tempfile:
     state: directory
     prefix: icecastkh
-
   register: icecastkh_tmpfile

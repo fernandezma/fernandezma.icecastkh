@@ -21,4 +21,7 @@ icecastkh_xml_port: 8000
 icecastkh_xml_logdir: /usr/local/var/log/icecast
 icecastkh_xml_accesslog: access.log
 icecastkh_xml_errorlog: error.log
-~
+icecastkh_xml_redirect_host: pool.domain.ttl
+icecastkh_xml_redirect_port: 8000
+icecastkh_xml_owner: icecast
+icecastkh_xml_group: icecast

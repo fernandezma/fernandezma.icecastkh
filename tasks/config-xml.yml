@@ -120,14 +120,69 @@
 - name: insert/update mount
   blockinfile:
     path: "{{ icecastkh_xml }}"
-    marker: "<!--  {mark} ANSIBLE MANAGED BLOCK {{ item.name }} -->"
+    marker: "<!--  {mark} ANSIBLE MANAGED MOUNTS {{ item.name }} -->"
     insertbefore: "</icecast>"
     block: |
-            <mount>
-                <mount-name>"{{ item.name }}"</mount-name>
-                <fallback-mount>"{{ item.fallback }}"</fallback-mount>
-            </mount>
-  with_items:
-    - { name: opusa.opus, fallback: opusb.opus }
-    - { name: opusb.opus, fallback: dtfm.opus }
-    - { name: dtmf.opus, fallback: silence.opus }
+          <mount>
+              <mount-name>/{{ item.name }}</mount-name>
+              <fallback-mount>/{{ item.fallback }}  </fallback-mount>
+              <password>{{ item.password }}</password>
+          </mount>
+  with_items: "{{ mounts }}"
+  when: mounts is defined
+
+
+# REDIRECT
+
+- name: insert/update REDIRECT
+  blockinfile:
+    path: "{{ icecastkh_xml }}"
+    marker: "<!--  {mark} ANSIBLE MANAGED REDIRECT -->"
+    insertbefore: "</icecast>"
+    block: |
+      <redirect>
+         <host>{{ icecastkh_xml_redirect_host }}</host>
+         <port>{{ icecastkh_xml_redirect_port }}</port>
+      </redirect>
+  when: icecastkh_xml_redirect_host is defined
+
+
+
+
+  - name: insert/update relay master server
+    blockinfile:
+      path: "{{ icecastkh_xml }}"
+      marker: "<!--  {mark} ANSIBLE MANAGED relay master server -->"
+      insertbefore: "</icecast>"
+      block: |
+        <master-server>{{ icecastkh_xml_relay_master_host }}</master-server>
+        <master-server-port>{{ icecastkh_xml_relay_master_port }}</master-server-port>
+        <master-update-interval>{{ icecastkh_xml_relay_master_update_interval }}</master-update-interval>
+        <master-password>{{ icecastkh_xml_relay_master_password }}</master-password>
+    when: icecastkh_xml_relay_master_host is defined
+
+
+
+
+
+
+# FIXES
+
+- name: Create logs folder  created
+  file:
+    path: "{{ icecastkh_xml_logdir }}"
+    state: directory
+    owner: "{{ icecastkh_xml_owner }}"
+    group: "{{ icecastkh_xml_group }}"
+
+- name: create error and access log
+  file:
+    path: "{{ icecastkh_xml_logdir }}/{{ icecastkh_xml_accesslog }}"
+    state: touch
+    owner: "{{ icecastkh_xml_owner }}"
+    group: "{{ icecastkh_xml_group }}"
+
+# RELOAD
+
+ - name: Reload service
+   shell: /etc/init.d/icecast force-reload
