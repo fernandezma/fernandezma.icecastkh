@@ -1,0 +1,127 @@
+---
+- include_role:
+    name: cmprescott.xml
+
+- name: icecast location
+  xml:
+    path: "{{ icecastkh_xml }}"
+    xpath: /icecast/location
+    value: "{{ icecastkh_xml_location }}"
+
+- name: icecast max clients
+  xml:
+    path: "{{ icecastkh_xml }}"
+    xpath: /icecast/limits/clients
+    value: "{{ icecastkh_xml_clients }}"
+
+
+- name: xml /icecast/limits/sources
+  xml:
+    path: "{{ icecastkh_xml }}"
+    xpath: /icecast/limits/clients
+    value: "{{ icecastkh_xml_sources }}"
+
+
+# LIMITS
+
+
+- name: xml /icecast/limits/queue-size
+  xml:
+    path: "{{ icecastkh_xml }}"
+    xpath: /icecast/limits/queue-size
+    value: "{{ icecastkh_xml_queue_size }}"
+
+- name: xml /icecast/limits/client-timeout
+  xml:
+    path: "{{ icecastkh_xml }}"
+    xpath: /icecast/limits/client-timeout
+    value: "{{ icecastkh_xml_client_timeout }}"
+
+- name: xml /icecast/limits/header-timeout
+  xml:
+    path: "{{ icecastkh_xml }}"
+    xpath: /icecast/limits/header-timeout
+    value: "{{ icecastkh_xml_header_timeout }}"
+
+- name: xml /icecast/limits/source-timeout
+  xml:
+    path: "{{ icecastkh_xml }}"
+    xpath: /icecast/limits/source-timeout
+    value: "{{ icecastkh_xml_source_timeout }}"
+
+- name: xml /icecast/limits/burst-size
+  xml:
+    path: "{{ icecastkh_xml }}"
+    xpath: /icecast/limits/burst-size
+    value: "{{ icecastkh_xml_burst_size }}"
+
+- name: xml /icecast/limits/max-bandwidth
+  xml:
+    path: "{{ icecastkh_xml }}"
+    xpath: /icecast/limits/max-bandwidth
+    value: "{{ icecastkh_xml_max_bandwidth }}"
+
+
+# AUTHENTICATION
+
+
+- name: xml /icecast/authentication/source-password
+  xml:
+    path: "{{ icecastkh_xml }}"
+    xpath: /icecast/authentication/source-password
+    value: "{{ icecastkh_xml_source_password }}"
+
+- name: xml /icecast/authentication/relay-password
+  xml:
+    path: "{{ icecastkh_xml }}"
+    xpath: /icecast/authentication/relay-password
+    value: "{{ icecastkh_xml_relay_password }}"
+
+- name: xml /icecast/authentication/admin-user
+  xml:
+    path: "{{ icecastkh_xml }}"
+    xpath: /icecast/authentication/admin-user
+    value: "{{ icecastkh_xml_admin_user }}"
+
+- name: xml /icecast/authentication/admin-password
+  xml:
+    path: "{{ icecastkh_xml }}"
+    xpath: /icecast/authentication/admin-password
+    value: "{{ icecastkh_xml_admin_password }}"
+
+
+# LISTEN SOCKET
+
+
+- name: xml /icecast/listen-socket/port
+  xml:
+    path: "{{ icecastkh_xml }}"
+    xpath: /icecast/listen-socket/port
+    value: "{{ icecastkh_xml_port }}"
+
+
+# PATHS
+
+
+- name: xml /icecast/paths/logdir
+  xml:
+    path: "{{ icecastkh_xml }}"
+    xpath: /icecast/paths/logdir
+    value: "{{ icecastkh_xml_logdir }}"
+
+
+# LOGGIN
+
+
+- name: xml /icecast/logging/accesslog
+  xml:
+    path: "{{ icecastkh_xml }}"
+    xpath: /icecast/logging/accesslog
+    value: "{{ icecastkh_xml_accesslog }}"
+
+- name: xml /icecast/logging/errorlog
+  xml:
+    path: "{{ icecastkh_xml }}"
+    xpath: /icecast/logging/errorlog
+    value: "{{ icecastkh_xml_errorlog }}"
+
