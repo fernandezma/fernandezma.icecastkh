@@ -5,6 +5,8 @@
 
 - include: download.yml
 
-- include: compile.yml 
+- include: compile.yml
 
 - include: adduser.yml
+
+- include: config-xml.yml
