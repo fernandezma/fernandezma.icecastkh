@@ -21,9 +21,7 @@
     xpath: /icecast/limits/clients
     value: "{{ icecastkh_xml_sources }}"
 
-
 # LIMITS
-
 
 - name: xml /icecast/limits/queue-size
   xml:
@@ -61,9 +59,7 @@
     xpath: /icecast/limits/max-bandwidth
     value: "{{ icecastkh_xml_max_bandwidth }}"
 
-
 # AUTHENTICATION
-
 
 - name: xml /icecast/authentication/source-password
   xml:
@@ -89,9 +85,7 @@
     xpath: /icecast/authentication/admin-password
     value: "{{ icecastkh_xml_admin_password }}"
 
-
 # LISTEN SOCKET
-
 
 - name: xml /icecast/listen-socket/port
   xml:
@@ -99,9 +93,7 @@
     xpath: /icecast/listen-socket/port
     value: "{{ icecastkh_xml_port }}"
 
-
 # PATHS
-
 
 - name: xml /icecast/paths/logdir
   xml:
@@ -109,9 +101,7 @@
     xpath: /icecast/paths/logdir
     value: "{{ icecastkh_xml_logdir }}"
 
-
 # LOGGIN
-
 
 - name: xml /icecast/logging/accesslog
   xml:
@@ -125,3 +115,19 @@
     xpath: /icecast/logging/errorlog
     value: "{{ icecastkh_xml_errorlog }}"
 
+# MOUNTS
+
+- name: insert/update mount
+  blockinfile:
+    path: "{{ icecastkh_xml }}"
+    marker: "<!--  {mark} ANSIBLE MANAGED BLOCK {{ item.name }} -->"
+    insertbefore: "</icecast>"
+    block: |
+            <mount>
+                <mount-name>"{{ item.name }}"</mount-name>
+                <fallback-mount>"{{ item.fallback }}"</fallback-mount>
+            </mount>
+  with_items:
+    - { name: opusa.opus, fallback: opusb.opus }
+    - { name: opusb.opus, fallback: dtfm.opus }
+    - { name: dtmf.opus, fallback: silence.opus }
