@@ -8,3 +8,4 @@
     - libvorbis-dev
     - libogg-dev
     - libtheora-dev
+    - xmlstarlet
